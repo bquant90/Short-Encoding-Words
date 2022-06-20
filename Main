@@ -1,0 +1,34 @@
+import java.util.*;  
+
+class Main {
+  
+  public static int minimumLengthEncoding(String[] words) {
+    Set<String> set = new HashSet<>(Arrays.asList(words));
+    for (String word: words) {
+      if(set.contains(word)) {
+        for (int i = 1; i < word.length(); i++) {
+          set.remove(word.substring(i));
+        }
+      }
+    }
+    int ans = set.size();
+    for (String word: set) ans += word.length();
+    return ans;
+  }
+  
+  public static void main(String[] args) {
+    String[] words = {"time", "me", "bell"};
+    System.out.print("Words in the array: ");
+    System.out.println(Arrays.toString(words));
+    int ans_num = minimumLengthEncoding(words);
+    System.out.format("Length of the shortest reference string: %d\n\n", ans_num);
+    
+    System.out.println("Let's try this again with another word array.");
+    String[] words2 = {"skate", "short", "sentence", "range", "lecture"};
+    System.out.print("Words in the array: ");
+    System.out.println(Arrays.toString(words2));
+    ans_num = minimumLengthEncoding(words2);
+    System.out.format("Length of the shortest reference string: %d\n", ans_num);
+  }
+  
+}
