@@ -25,7 +25,7 @@ def shortest_ref_string(words: list[str]) -> tuple[str, int]:
     for i in range(1, len(word)):
       word_set.discard(word[i:])
             
-  sorted_words = {word for word in words if word in word_set} # Use set comprehension to avoid duplicates and preserve order.
+  sorted_words = sorted(word_set, key=lambda word: word_indices[word])  # Get word indices from the dictionary.
   ans = f"{'#'.join(sorted_words)}#"
   return ans, len(ans)
 
